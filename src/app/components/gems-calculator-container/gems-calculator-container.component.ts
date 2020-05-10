@@ -128,8 +128,8 @@ export class GemsCalculatorContainerComponent implements OnInit {
     //set result gem,fusion,diamond
     this.result.gem = (Math.pow(2, this.combineLevel - 1) - this.currentTotalGems() - Math.pow(2, this.currentLevel - 1)) / 16;
     console.log('gem', Math.pow(2, this.combineLevel - 1), this.result.gem);
-    this.result.fusion = this.combineLevel >= 10 ?
-      Math.pow(2, this.combineLevel - 9) - Math.pow(2, this.currentLevel - 9) - this.fusionOwned : 0;
+    this.result.fusion = this.combineLevel > 10 ?
+      Math.pow(2, this.combineLevel - 9) - Math.pow(2, this.currentLevel - 9) - this.fusionOwned : this.combineLevel === 10 ? 1 : 0;
     this.result.diamond = this.result.gem * 48 + this.result.fusion * 247;
     this.calculated = true;
   }
