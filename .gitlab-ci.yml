@@ -5,7 +5,7 @@ stages:
   - deploy
 
 before_script:
-  - npm install --silent
+  - npm install
 
 cache:
     paths:
