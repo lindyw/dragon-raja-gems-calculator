@@ -1,0 +1,146 @@
+<div class="wrapper">
+  <mat-card class="container" mat-elevation-z8>
+
+    <mat-card-header>
+      <div mat-card-avatar class="header-icon">
+        <mat-icon>flare_outline</mat-icon>
+      </div>
+      <mat-card-title>Gem Fusion Calculator <mat-icon class="info"
+          matTooltip="Help you to calculate how many lv.5 gem and fusion are needed and how much (diamonds) will cost you">
+          info_outline</mat-icon>
+      </mat-card-title>
+      <mat-card-subtitle>A Simple Utility Tool for Dragan Raja</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Block 1 -->
+      <span class="level-description">1. Lv. of gem you need to combine</span>
+      <div class="gem-selection-container">
+        <div class="target-selection-container">
+          <img [src]="getGemImage(currentLevel)">
+          <div class="combine-lv-selector">
+            <button mat-button (click)="leveldown('current')" [disabled]="currentLevel === 1">
+              <mat-icon>arrow_left</mat-icon>
+            </button>
+            <span>Lv.{{currentLevel}}</span>
+            <button mat-button (click)="levelup('current')" [disabled]="currentLevel === 16">
+              <mat-icon>arrow_right</mat-icon>
+            </button>
+          </div>
+          <span class="level-description">Current Gem Lv.<br>(min. lv: 1, max. lv:16)</span>
+        </div>
+        <mat-icon class="arrow">arrow_forward</mat-icon>
+        <div class="target-selection-container">
+          <img [src]="getGemImage(combineLevel)">
+          <div class="combine-lv-selector">
+            <button mat-button (click)="leveldown('target')" [disabled]="combineLevel === 5">
+              <mat-icon>arrow_left</mat-icon>
+            </button>
+            <span>Lv.{{combineLevel}}</span>
+            <button mat-button (click)="levelup('target')" [disabled]="currentLevel === 17">
+              <mat-icon>arrow_right</mat-icon>
+            </button>
+          </div>
+          <span class="level-description">Target Upgrade Lv.<br>(min. lv: 5, max. lv:17)</span>
+        </div>
+      </div>
+      <!-- Block 2 -->
+      <span class="level-description">
+        <hr>2. Material owned in your inventory</span>
+
+      <div class="materials">
+        <div *ngIf="materials.length === 0 && fusionOwned === 0" style="margin-left: 1rem;color:lightgray">(No material owned)</div>
+        <div *ngFor="let m of materials">
+          <div class="gem">
+            <span class="close" (click)="removeMaterial(m)">&times;</span>
+            <img [src]="getGemImage(m.level)">
+            <div class="gem-description">
+              <span>{{'Lv.' + m.level}} x </span>
+              <input matInput [value]="m.amount" class="number-of-gems" (input)="gemAmountChange($event.data,m)">
+            </div>
+          </div>
+        </div>
+
+        <div class="fusion" *ngIf="fusionOwned > 0">
+          <span class="fclose" (click)="removeFusion()">&times;</span>
+          <img src="../../../assets/fusion_essence.JPG">
+          <div class="gem-description">
+            <span>{{'Fusion x ' + fusionOwned}}</span>
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field style="margin-left: 1rem;">
+        <mat-label style="color:white">Add Owned Gem(s)</mat-label>
+        <mat-select (selectionChange)="selectedLevel($event.value)" [(value)]="selectedGem">
+          <mat-option *ngFor=" let i of gemLevelOptions" [value]="i">
+            {{'Lv.' + i}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-mini-fab (click)="addMaterial()" class="add">+</button>
+
+      <mat-form-field style="margin-left: 1rem;">
+        <mat-label style="color:white">Add Owned Fusion(s)</mat-label>
+        <mat-select (selectionChange)="selectedFusionAmount($event.value)" [(value)]="selectedFusion">
+          <mat-option *ngFor="let f of counter(255); let i = index" [value]="i+1">
+            {{i+1}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-mini-fab (click)="addFusion()" class="add">+</button>
+
+      <!-- Result -->
+      <div class="result" *ngIf="calculated">
+        <span>
+          <hr>Result </span>
+        <div class="sub-header">
+          <span class='level-description'>Material needed:</span>
+          <span class='level-description'>Total Diamonds Cost:</span>
+        </div>
+
+        <div class="result-content">
+          <div class="result-items">
+            <div *ngIf="result.gem > 1" class="item">
+              <img [src]="getGemImage(5)">
+              <div class="item-description">
+                <span>Lv5 x {{result.gem}}</span>
+              </div>
+            </div>
+            <div *ngIf="result.gem < 1" class="item">
+              <img [src]="getGemImage(1)">
+              <div class="item-description">
+                <span>Lv1 x {{result.gem * 16}}</span>
+              </div>
+            </div>
+            <div class="item">
+              <img src="../../../assets/fusion_essence.JPG">
+              <div class="item-description">
+                <span>fusion x {{result.fusion}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-items">
+            <div class="item">
+              <img src="../../../assets/diamond.JPG">
+              <div class="item-description">
+                <span>{{result.diamond}}</span>
+              </div>
+              <mat-radio-group aria-label="count gems/fusion seperately" [(ngModel)]="filterSelection"
+              (change)="radioChange($event.value)">
+                <mat-radio-button value="0">All</mat-radio-button>
+                <mat-radio-button value="1">Gems Only</mat-radio-button>
+                <mat-radio-button value="2">Fusions Only</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button class="reset" (click)="reset()">Reset</button>
+      <button mat-flat-button class="calculate" (click)="calculate()">Calculate</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

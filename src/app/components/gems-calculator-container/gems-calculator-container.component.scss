@@ -1,0 +1,182 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #19232f;
+    .container {
+        margin-top: 20px;
+        .header-icon {
+            color: rgb(0, 255, 217);
+        }
+        .info {
+            vertical-align: sub;
+            color: burlywood;
+        }
+        background-image: linear-gradient(to right, rgba(87, 118, 154, 0.5), #48627f, #293b53);
+        color: white;
+        mat-card-subtitle {
+            color: lightgray;
+        }
+        .gem-selection-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            .arrow {
+                margin-top: -4rem;
+                color: blanchedalmond;
+                text-shadow: 1px 1px black;
+            }
+            .target-selection-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 0.5rem;
+                img {
+                    width: 4rem;
+                    height: 4rem;
+                }
+                .combine-lv-selector {
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 0.5rem;
+                    button {
+                        min-width: 10px;
+                        width: 20px;
+                        height: 30px;
+                        margin: 0 0.2rem 0 0.2rem;
+                    }
+                    span {
+                        font-size: 0.9rem;
+                        padding: 3px;
+                    }
+                    mat-icon {
+                        vertical-align: sub;
+                        text-align: left;
+                        width: 20px !important;
+                        margin-left: -12px;
+                    }
+                }
+                .level-description {
+                    margin-top: 0.5rem;
+                    color: lightblue;
+                    font-size: 0.8rem;
+                    text-align: center;
+                }
+            }
+        }
+
+        .materials {
+            display: flex;
+            flex-direction: row;
+            margin: 0.5rem 0 0.5rem 0;
+            flex-wrap: wrap;
+            max-width: 400px;
+            .gem, .fusion {
+                display:flex;
+                flex-direction: column;
+                margin-left: 1rem;
+                position: relative;
+                img {
+                    width: 4rem;
+                    height: 4rem;
+                }
+                .close {
+                    cursor: pointer;
+                    color:white;
+                    z-index: 100;
+                    position: absolute;
+                    right:0.8rem;
+                }
+                .fclose {
+                    cursor: pointer;
+                    color:white;
+                    z-index: 100;
+                    position: absolute;
+                    right:0.4rem;
+                }
+                .gem-description {
+                    margin-top:0.5rem;
+                    .number-of-gems {
+                        border-bottom: 1px solid black;
+                        max-width:2rem;
+                        vertical-align: baseline;
+                        text-align: center;
+                    }
+                }
+             
+            }
+        }
+        
+        .add {
+            margin-left: 1rem;
+            background: #26758a;
+            color:white;
+        }
+
+        .result {
+            .sub-header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width:90%;
+                margin-top: 0.5rem;
+            }
+            .level-description {
+                color: lightblue;
+                font-size: 0.8rem;
+                text-align: center;
+            }
+            .result-content {
+                display:flex;
+                flex-direction: row;
+                margin-top: 0.3rem;
+                max-width: 450px;
+                justify-content: space-between;
+                .result-items{
+                    display: flex;
+                    flex-direction: row;
+                    width:120px;
+                    justify-content: space-around;
+                    img {
+                        width: 3rem;
+                        height: 3rem;
+                    }
+                    .item-description {
+                        text-align: left;
+                        font-size: 0.8rem;
+                    }
+                    mat-radio-group {
+                        margin-top: 0.5rem;
+                        display: flex;
+                        flex-direction: column;
+                        height:50px;
+                        justify-content: space-between;
+                    }
+                }
+               
+            }
+        }
+
+
+        mat-card-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 0.3rem;
+            button {
+                color: white;
+                border-radius: 2px;
+                margin-right: 1rem;
+                margin-bottom: 1rem;
+            }
+            .reset {
+                background: rgb(193, 89, 63);
+            }
+            .calculate {
+                background: #28ac92;
+            }
+        }
+    }
+}
