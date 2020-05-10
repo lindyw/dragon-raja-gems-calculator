@@ -8,8 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:gitlab": "ng build --prod --base-href /gems-calculator/",
-    "test:chromeHeadless": "npm run test  --browsers ChromeHeadless --single-run"
+    "build:gitlab": "ng build --prod --base-href /gems-calculator/"
   },
   "private": true,
   "dependencies": {
