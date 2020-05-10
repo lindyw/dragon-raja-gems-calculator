@@ -36,7 +36,6 @@ test:
     - node ./node_modules/.bin/webdriver-manager update
   script:
     - npm run lint
-    - npm run test:chromeHeadless
     - npm run e2e
 
 pages:
