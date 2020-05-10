@@ -35,26 +35,26 @@ export class GemsCalculatorContainerComponent implements OnInit {
     switch (level) {
       case 1:
       case 2:
-        return '../../../assets/fire_1-2.JPG';
+        return '/dragon-raja-gems-calculator/assets/fire_1-2.JPG';
       case 3:
       case 4:
-        return '../../../assets/fire_3-4.JPG';
+        return '/dragon-raja-gems-calculator/assets/fire_3-4.JPG';
       case 5:
       case 6:
       case 7:
-        return '../../../assets/fire_5-7.JPG';
+        return '/dragon-raja-gems-calculator/assets/fire_5-7.JPG';
       case 8:
       case 9:
       case 10:
       case 11:
-        return '../../../assets/fire_8-11.JPG';
+        return '/dragon-raja-gems-calculator/assets/fire_8-11.JPG';
       case 12:
       case 13:
       case 14:
       case 15:
       case 16:
       case 17:
-        return '../../../assets/fire_12-17.JPG';
+        return '/dragon-raja-gems-calculator/assets/fire_12-17.JPG';
     }
 
   }
