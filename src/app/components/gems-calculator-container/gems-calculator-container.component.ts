@@ -125,7 +125,6 @@ export class GemsCalculatorContainerComponent implements OnInit {
   }
   calculate() {
     this.calculated = false;
-    //set result gem,fusion,diamond
     this.result.gem = (Math.pow(2, this.combineLevel - 1) - this.currentTotalGems() - Math.pow(2, this.currentLevel - 1)) / 16;
     console.log('gem', Math.pow(2, this.combineLevel - 1), this.result.gem);
     this.result.fusion = this.combineLevel > 10 ?

@@ -10,7 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
